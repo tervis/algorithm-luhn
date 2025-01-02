@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Tervis\Algorithms\Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tervis\Algorithms\Luhn;
 
@@ -11,27 +12,35 @@ use Tervis\Algorithms\Luhn;
  */
 class LuhnTest extends TestCase
 {
-    private const WITH_CHECK_DIGIT = '1234-5678-9012-3452';
-
-    private const WITHOUT_CHECK_DIGIT = '555-666-777-88';
-    protected int $checkDigit = 6;
-
-
-    public function testValidate()
+    public function testValidate(): void
     {
-        $this->assertTrue(Luhn::validate(self::WITH_CHECK_DIGIT));
+        $this->assertTrue(Luhn::validate('1234-5678-9012-3452')); // string
+        $this->assertTrue(Luhn::validate(1234567890123452)); // int
+        $this->assertFalse(Luhn::validate('555-666-777-88')); // without check digit
     }
 
-    public function testCalculate()
+    #[DataProvider('digitDataProvider')]
+    public function testCalculate($value, $checkDigit): void
     {
-        $this->assertSame($this->checkDigit, Luhn::calculate(self::WITHOUT_CHECK_DIGIT));
+        $this->assertSame($checkDigit, Luhn::calculate($value));
     }
 
-    public function testAppendCheckDigit()
+    #[DataProvider('digitDataProvider')]
+    public function testAppendCheckDigit($value, $checkDigit): void
     {
-        $appended = Luhn::appendCheckDigit(self::WITHOUT_CHECK_DIGIT);
-        $expected = self::WITHOUT_CHECK_DIGIT . $this->checkDigit;
+        $appended = Luhn::appendCheckDigit($value);
+        $expected = $value . $checkDigit;
+
         $this->assertSame($expected, $appended);
         $this->assertTrue(Luhn::validate($appended));
+    }
+
+    public static function digitDataProvider(): iterable
+    {
+        yield ['1234567', 4];
+        yield [1234567, 4];
+        yield ['8765432', 3];
+        yield ['555-666-777-88', 6];
+        yield ['1234-5678-9012-345', 2];
     }
 }

@@ -1,7 +1,7 @@
 {
     "name": "tervis/algorithm-luhn",
     "description": "Luhn algorithm implementation for PHP",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -26,6 +26,6 @@
         "phpunit/phpunit": "^11.5"
     },
     "scripts": {
-        "phpunit": "./vendor/bin/phpunit"
+        "tests": "./vendor/bin/phpunit"
     }
 }
