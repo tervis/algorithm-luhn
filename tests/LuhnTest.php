@@ -28,7 +28,7 @@ class LuhnTest extends TestCase
     #[DataProvider('digitDataProvider')]
     public function testAppendCheckDigit($value, $checkDigit): void
     {
-        $appended = Luhn::appendCheckDigit($value);
+        $appended = Luhn::create($value);
         $expected = $value . $checkDigit;
 
         $this->assertSame($expected, $appended);

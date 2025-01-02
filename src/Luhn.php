@@ -46,7 +46,7 @@ class Luhn
      * @param int|string $partial_number
      * @return string
      */
-    public static function appendCheckDigit(int|string $partial_number): string
+    public static function create(int|string $partial_number): string
     {
         return $partial_number . self::calculate($partial_number);
     }

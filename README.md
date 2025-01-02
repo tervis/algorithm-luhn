@@ -17,15 +17,12 @@ If the double of a digit is equal or superior to 10, replace it by the sum of it
 Realize the sum $s$ of all digits found. The control digit $c$ is equal to $c = (10 − (s mod 10)) mod 10 $.
 
 ## Installation
+With composer:
 
-To add this package as a dependency to your project, simply add a dependency on `tervis/algorithms-luhn` to your project's `composer.json` file.
-```json
-    {
-        "require": {
-            "tervis/algorithms-luhn": "*"
-        }
-    }
+```bash
+composer require tervis/algorithms-luhn
 ```
+
 ### Usage
 
 ```php
@@ -48,6 +45,6 @@ Luhn::calculate(8765432); // returns 3
 
 Calculates the check digit and returns number with check digit appended.
 ```php
-Luhn::appendCheckDigit('1234567'); // returns 12345674
-Luhn::appendCheckDigit(8765432); // returns 87654323
+Luhn::create('1234567'); // returns 12345674
+Luhn::create(8765432); // returns 87654323
 ```
