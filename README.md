@@ -1,7 +1,8 @@
 # algorithms-luhn
+
 Luhn algorithm implementation for PHP
 
-The Luhn algorithm, also known as the `modulus 10` or `mod 10` algorithm, is a simple checksum formula used to validate a variety of identification numbers, such as credit card numbers, IMEI numbers and some national identity numbers.
+The [Luhn](https://en.wikipedia.org/wiki/Luhn_algorithm) algorithm, also known as the `modulus 10` or `mod 10` algorithm, is a simple checksum formula used to validate a variety of identification numbers, such as credit card numbers, IMEI numbers and some national identity numbers.
 
 Luhn makes it possible to check numbers thanks to its control key (a digit which makes it possible to check the others digits). If a character is misread or badly written, then Luhn's algorithm will detect this error.
 

@@ -4,12 +4,20 @@ declare(strict_types=1);
 namespace Tervis\Algorithms;
 
 /**
- * @author Mika Tervonen <mtervonen80@gmail.com>
+ * Luhn algorithm.
+ *
+ * The Luhn algorithm or Luhn formula, also known as the "modulus 10" or
+ * "mod 10" algorithm, is a simple checksum formula used to validate a
+ * variety of identification numbers, such as credit card numbers,
+ * IMEI numbers, National Provider Identifier numbers in the US, and
+ * Canadian Social Insurance Numbers. It was created by IBM scientist
+ * Hans Peter Luhn and described in U.S. Patent No. 2,950,048, filed
+ * on January 6, 1954, and granted on August 23, 1960.
  */
 class Luhn
 {
     /**
-     * Validates a number.
+     * Check luhn number.
      * @param int|string $number
      * @return bool
      */
@@ -46,7 +54,7 @@ class Luhn
     /**
      * Calculates the check digit of a number.
      * @param int|string $partial_number
-     * @return int
+     * @return int Checksum digit
      */
     public static function calculate(int|string $partial_number): int
     {
