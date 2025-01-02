@@ -26,7 +26,7 @@ class Luhn
         return self::getChecksum($number) === 0;
     }
 
-    protected static function getChecksum(int|string $number): int
+    private static function getChecksum(int|string $number): int
     {
         // digits only, replace anything else
         $number = preg_replace('/\W/', '', (string)$number);
