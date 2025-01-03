@@ -1,6 +1,6 @@
-# algorithms-luhn
+# algorithms-modulus10
 
-Luhn algorithm implementation for PHP
+Luhn (mod11) algorithm implementation for PHP
 
 ![Tests](https://github.com/tervis/algorithms-luhn/workflows/Tests/badge.svg)
 
@@ -20,31 +20,31 @@ Realize the sum $s$ of all digits found. The control digit $c$ is equal to $c = 
 With composer:
 
 ```bash
-composer require tervis/algorithms-luhn
+composer require tervis/algorithms-modulus10
 ```
 
 ### Usage
 
 ```php
-use Tervis\Algorithms\Luhn;
+use Tervis\Algorithms\Modulus10;
 ```
 
 #### Static methods
 
 Validates a number.
 ```php
-Luhn::validate('12345678'); // returns false
-Luhn::validate(87654323); // returns true
+Modulus10::validate('12345678'); // returns false
+Modulus10::validate('87654323'); // returns true
 ```
 
 Calculates the check digit of a number.
 ```php
-Luhn::calculate('1234567'); // returns 4
-Luhn::calculate(8765432); // returns 3
+Modulus10::calculate('1234567'); // returns 4
+Modulus10::calculate('8765432'); // returns 3
 ```
 
 Calculates the check digit and returns number with check digit appended.
 ```php
-Luhn::create('1234567'); // returns 12345674
-Luhn::create(8765432); // returns 87654323
+Modulus10::create('1234567'); // returns 12345674
+Modulus10::create('8765432'); // returns 87654323
 ```

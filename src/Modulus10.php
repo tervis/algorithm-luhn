@@ -14,28 +14,28 @@ namespace Tervis\Algorithms;
  * Hans Peter Luhn and described in U.S. Patent No. 2,950,048, filed
  * on January 6, 1954, and granted on August 23, 1960.
  */
-class Luhn
+class Modulus10
 {
     /**
-     * Check luhn number.
-     * @param int|string $number
+     * Validate number according to Luhn algorithm (mod 10)
+     * @param string $number
      * @return bool
      */
-    public static function validate(int|string $number): bool
+    public static function validate(string $number): bool
     {
         return self::getChecksum($number) === 0;
     }
 
-    private static function getChecksum(int|string $number): int
+    private static function getChecksum(string $number): int
     {
         // digits only, replace anything else
-        $number = preg_replace('/\W/', '', (string)$number);
+        $number = preg_replace('/\W/', '', $number);
         $parts = str_split($number);
         $sum = 0;
         
         for ($i = 0; $i < count($parts); $i++) {
             $factor = $i % 2 ? 1 : 2;
-            $sum += array_sum(str_split((string)((int)$parts[$i] * $factor)));
+            $sum += array_sum(str_split((string)($parts[$i] * $factor)));
         }
 
         return $sum % 10;
@@ -43,20 +43,20 @@ class Luhn
 
     /**
      * Calculates the check digit and returns number with check digit appended.
-     * @param int|string $partial_number
+     * @param string $partial_number
      * @return string
      */
-    public static function create(int|string $partial_number): string
+    public static function create(string $partial_number): string
     {
         return $partial_number . self::calculate($partial_number);
     }
 
     /**
      * Calculates the check digit of a number.
-     * @param int|string $partial_number
+     * @param string $partial_number
      * @return int Checksum digit
      */
-    public static function calculate(int|string $partial_number): int
+    public static function calculate(string $partial_number): int
     {
         $checksum = self::getChecksum($partial_number);
         return $checksum ? 10 - $checksum : $checksum;
